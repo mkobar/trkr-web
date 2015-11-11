@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>TRKR: Team Tracker for Emergency Locations</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="/dist/css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="/bower_components/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+    <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-cookies.js"></script>
+    <script src="controller.js"></script>
+
+</head>
+
+<body ng-app="trkr">
+
+    <div id="wrapper" ng-controller="TeamsController">
+
+        <!-- Navigation -->
+        <div ng-include="'nav.html'"></div>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Demo Organization - Teams</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title pull-left">Teams List</h3>
+                            <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#createteam-modal"><i class="fa fa-plus-square-o fa-fw"></i> Create New Team</button>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <!-- Create New Team Modal -->
+                        <div class="modal fade" id="createteam-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Create New Team</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="form-group">
+                                        <label>Name</label>
+                                        <input class="form-control" placeholder="Enter new team name" ng-model="createteam.name">
+                                        <label>Latitude</label>
+                                        <input class="form-control" placeholder="Enter the latitude of the team's location e.g. 25.80105" ng-model="createteam.lat">
+                                        <label>Longtitude</label>
+                                        <input class="form-control" placeholder="Enter the longtitude of the team's location e.g. -109.00635" ng-model="createteam.lon">
+                                    </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="createTeam(createteam)">Create</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item" data-ng-repeat="team in teams" ng-click="setselectedteam($index)">
+                                    <h4 class="list-group-item-heading">{{team.name}}<i class="fa fa-minus-square-o fa-fw pull-right" data-toggle="modal" data-target="#removeteam-modal" ng-click="setremoveteam($index);"></i></h4><button type="button" class="btn btn-default pull-right">Monitor</button> 
+                                    <p class="list-group-item-text">5 Members Active</p>
+                                    <p class="list-group-item-text">{{team.loc.lat}}, {{team.loc.lon}}</p>
+                                    <p class="list-group-item-text">Created on 25-October-2015</p>
+                                    
+                                    <div class="clearfix"></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Remove Team Modal -->
+                        <div class="modal fade" id="removeteam-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Remove {{removedteam}}</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p>Are you sure you want to remove {{removedteam}} and all members from the team?</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="removeTeam()">Remove</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                    </div>
+                    <!-- /.panel -->
+                    
+                    
+                </div>
+                <!-- /.col-lg-6 -->
+
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title pull-left">Members of {{selectedteam}}</h3>
+                            <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addmember-modal"><i class="fa fa-plus-square-o fa-fw"></i> Add Member</button>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!-- Add Member Modal -->
+                        <div class="modal fade" id="addmember-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Add Member</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="form-group">
+                                        <label>User ID</label>
+                                        <input class="form-control" placeholder="Enter the User ID of the user you want to add as a new member" ng-model="member.uid">
+                                    </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addMember(member)">Add</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="chat">
+                                <li class="left clearfix" data-ng-repeat="member in members">
+                                    <span class="member-safe pull-left">
+                                        <span class="fa-stack fa-2x text-success">
+                                          <i class="fa fa-circle fa-stack-2x"></i>
+                                          <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <strong class="primary-font">{{member.firstname}} {{member.lastname}}</strong>
+                                            <small class="pull-right text-muted" style="cursor:pointer" data-toggle="modal" data-target="#removemember-modal" ng-click="setremovemember($index);">
+                                                <i class="fa fa-minus-square-o fa-fw"></i> Remove
+                                            </small>
+                                        </div>
+					<a href="locate.html?lat={{selectedteamlat}}&lon={{selectedteamlon}}&uid={{member.uid}}">
+                                        <button type="button" class="btn btn-default pull-right">Monitor</button> 
+					</a>
+                                        <p>
+                                            Safe
+                                        </p>
+                                    </div>
+                                </li>
+<!--
+                                <li class="left clearfix">
+                                    <span class="member-safe pull-left">
+                                        <span class="fa-stack fa-2x text-danger">
+                                          <i class="fa fa-circle fa-stack-2x"></i>
+                                          <i class="fa fa-support fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <strong class="primary-font">John Smith</strong>
+                                            <small class="pull-right text-muted">
+                                                <i class="fa fa-minus-square-o fa-fw"></i> Remove
+                                            </small>
+                                        </div>
+                                        <button type="button" class="btn btn-default pull-right">Monitor</button> 
+                                        <p>
+                                            Description 2
+                                        </p>
+                                    </div>
+                                </li>
+-->
+                            </ul>
+                        </div>
+
+                        <!-- Remove Member Modal -->
+                        <div class="modal fade" id="removemember-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Remove {{removedmember}}</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p>Are you sure you want to remove {{removedmember}} from this team?</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="removeMember()">Remove</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                    </div>
+                    <!-- /.panel -->
+                    
+                    
+                </div>
+                <!-- /.col-lg-6 -->
+
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="/bower_components/raphael/raphael-min.js"></script>
+    <script src="/bower_components/morrisjs/morris.min.js"></script>
+    <script src="/js/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

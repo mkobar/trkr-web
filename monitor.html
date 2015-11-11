@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>TRKR - Monitor</title>
+		<meta name="description" content="TRKR" />
+		<meta name="keywords" content="TRKR" />
+		<meta name="author" content="TRKR" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<header class="clearfix">
+				<span>Monitor</span>
+				<h1>Based on data collected from Last Hour</h1>
+				<nav>
+					<a href="#" class="icon-sun" data-info="Weather">Weather</a>
+					<a href="#" class="icon-globe" data-info="Global	">Global</a>
+				</nav>
+			</header>
+			<ul class="cbp-vimenu">
+				<li><a href="#" class="logo"><i class="fa fa-location-arrow"></i><br>TRKR</a></li>
+				<li><a href="#"><i class="fa fa-users"></i><br>Team</a></li>
+				<li><a href="#"><i class="fa fa-sitemap"></i><br>Organization</a></li>
+				<li class="cbp-vicurrent"><a href="#"><i class="fa fa-compass"></i><br>Monitor</a></li>
+				<li><a href="#"><i class="fa fa-cogs"></i><br>Account</a></li>
+				<li><a href="#"><i class="fa fa-question"></i><br>Help</a></li>
+			</ul>
+			<ul class="cbp-vimenu monitor-menu">
+				<li><a href="#">Organization - Team</a></li>
+				<li class="cbp-vicurrent"><a href="#">Member</a></li>
+				<li class="cbp-vicurrent"><a href="#">Member</a></li>
+				<li><a href="#">Member</a></li>
+				<li><a href="#">Member</a></li>
+			</ul>
+			<div class="main">
+				<h2>Location of Team Members</h2>
+				<div style="height: 50em"><div id="map" style="height: 100%;"></div></div>
+				<h2>Status of Team</h2>
+				<p>Information about Member and Team</p>
+			</div>
+		</div>
+	</body>
+	    <script>
+
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+  });
+}
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVQsg4M6EzKhnPrzOuKSVl51KguaNNlZo&callback=initMap"
+        async defer></script>
+</html>

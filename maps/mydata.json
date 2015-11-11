@@ -1,0 +1,44 @@
+{
+    "items": [
+    {
+        "name": "jack sparrow",
+        "location": {"lat":25.7403286, "lon":-109.0035151},
+        "team": "Team Mexico - Hurricane"
+    },
+    {
+        "name": "john smith",
+        "location": {"lat":25.74538, "lon":-109.0859},
+        "team": "Team Mexico - Hurricane"
+    },
+    {
+        "name": "mike tester",
+        "location": {"lat":25.74535, "lon":-109.0083},
+        "team": "Team Mexico - Hurricane"
+    },
+    {
+        "name": "guylherme alencar",
+        "location": {"lat":25.76353417699335, "lon":-109.00458361625671},
+        "team": "Team Mexico - Hurricane"
+    },
+    {
+        "name": "timothy allard",
+        "location": {"lat":25.7453296, "lon":-109.005575},
+        "team": "Team Mexico - Hurricane"
+    },
+    {
+        "name": "eric anderson",
+        "location": {"lat":25.74135, "lon":-109.0251},
+        "team": "Team Mexico - Hurricane"
+    },
+    {
+        "name": "eric anderson",
+        "location": {"lat":25.74558, "lon":-109.0059},
+        "team": "Team Mexico - Hurricane"
+    },
+    {
+        "name": "eric anderson",
+        "location": {"lat":25.73335, "lon":-109.0401},
+        "team": "Team Mexico - Hurricane"
+        }
+    ]
+}

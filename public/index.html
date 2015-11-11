@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>TRKR: Team Tracker for Emergency Locations</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="/dist/css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="/bower_components/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+    <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-cookies.js"></script>
+    <script src="controller2.js"></script>
+
+</head>
+
+<body ng-app="trkr">
+
+    <div id="wrapper" ng-controller="IndexController">
+
+        <!-- Navigation -->
+        <div ng-include="'nav2.html'"></div>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">TRKR - The Team Tracker for Emergency Locations</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+		<center>
+		<p>Track your team in the field at a disaster site with only smartphones</p>
+		</center>
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-fw"></i> Inspiration for TRKR
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+				<p>Our inspiration is a little stupid, but the movie Aliens, where the Marine leader is monitoring his team as they explore the disaster site.</p>
+<p>Yes, you could stay on the line/phone the entire time, but that is inconvenient and may pose more hazard to the team in the field. And there may not be reliable G3 or Internet available. There are personal GPS devices that can do a subset of our management, but they cost a lot and may not be available on site. And they do not let a team leader manage an entire distributed team.</p>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-fw"></i> What TRKR does
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+				<p>Our idea is a team tracking app (TRKR) that would allow team members to load a small app on their smartphones and then be tracked by their team leader via a web app (on a map). The smartphone app would be native, run in the background and ping the server every N minutes with location data (very low network bandwidth needed). The smartphone app could also detect movement (with the accelerometer) and ping new location data while on the move. this should allow for very low battery usage and minimal usage of GPS calls. TRKR can support delay-tolerant networks, including temporary long-distance WiFi networks and intermittent and low bandwidth G2 service.</p>
+
+<p>On the web app side, the team leader could track all of their human assets, as a group or individually, and see their tracks over time. It would allow them to monitor team location in the field for security or medical reasons, signal to them (using a store and forward approach), and receive status updates from the field.</p>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-fw"></i> How we built TRKR
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+				<p>TRKR consists of a few distributed elements:</p>
+				<ul>
+
+    				<li>A centralized API Service, written in Java and using MongDB for data storage.
+				</li>
+				<li>A Web Application, for account management, monitoring and endpoint updates.
+				</li>
+				<li>And multiple mobile "pingers", that send heartbeats with location and status from each team member's smartphone.
+				</li>
+				</ul>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-fw"></i> How to use TRKR
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+				<p>Our test dataset includes 3 orgizations, 9 teams and 45 members:</p>
+				<ul>
+
+    				<li>Org: ICRC login with user=tallard and password=password
+				</li>
+				<li>Org: MFS  login with user=ccollson and password=password
+				</li>
+				<li>Org: Oxfam  login with user=porourke and password=password
+				</li>
+				<li>and the TRKR pinger (on github) can send ping locations and status for members.d
+				</li>
+				</ul>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="/bower_components/raphael/raphael-min.js"></script>
+    <script src="/bower_components/morrisjs/morris.min.js"></script>
+    <script src="/js/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>
