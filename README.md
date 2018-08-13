@@ -2,7 +2,9 @@
 for Bluemixathon: Operation Rescue &amp; Recovery 2015
 
 ## TRKR  - Track your team in the field at a disaster site with only smartphones
+
 ===
+
 This is the Web-app portion of the TRKR system.
 
 ![Platform](https://img.shields.io/badge/platform-Web-orange.svg)
@@ -40,6 +42,6 @@ See [this](http://devpost.com/software/trkr) DevPost entry for more information 
 
 
 ---
-Copyright @ 2015 [RKOSecurity] (http://www.rkosecurity.com)
+Copyright @ 2015 [RKOSecurity](http://www.rkosecurity.com)
 
 Released under the Apache license.
